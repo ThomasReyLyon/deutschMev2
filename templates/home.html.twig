@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump(articles) }}
-    <div class="uk-child-width-1-2 uk-text-center" uk-grid>
+    <div class="uk-child-width-1-2 uk-text-center main-div-homepage" uk-grid>
         <div>
             {% for article in articles | slice(0,1) %}
             <article class="uk-article">
@@ -11,8 +10,8 @@
 
                 <p class="uk-article-meta">écrit par <a href="#">{{ article.author.name }}</a> on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#">{{ article.category.name }}</a></p>
 
-                <p>
-                {{ article.content }}
+                <p  class="homepage-Article ">
+                {{ article.content | truncate(600)}}
                 </p>
 
                 <div class="uk-grid-small uk-child-width-auto" uk-grid>
@@ -27,7 +26,7 @@
             </article>
             {% endfor %}
         </div>
-        <div class="uk-child-width-1-2 uk-text-center" uk-grid>
+        <div class="uk-child-width-1-2 uk-text-center"  uk-grid>
             {% for article in articles | slice(1,2) %}
             <div>
 
@@ -37,8 +36,8 @@
 
                     <p class="uk-article-meta">Written by <a href="#">{{ article.author.name }}</a> on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#">{{ article.category.name }}</a></p>
 
-                    <p>
-                        {{ article.content }}
+                    <p class="homepage-Article">
+                        {{ article.content | truncate(400) }}
                     </p>
 
                     <div class="uk-grid-small uk-child-width-auto" uk-grid>
