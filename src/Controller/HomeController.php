@@ -19,6 +19,7 @@ class HomeController extends AbstractController
 
 		$articles = $articleRepository->allArticlesOrderedByDate();
 
+
 		return $this->render('home.html.twig', ['articles' => $articles]);
 	}
 

@@ -25,7 +25,7 @@ class AuthorFixtures extends Fixture
     	for($i = 10; $i < 20; $i++) {
 			$fakerDe = Faker\Factory::create('de_DE');
 			$author = new Author();
-    		$author->setName($fakerFr->firstName.' '.$fakerFr->lastName);
+    		$author->setName($fakerDe->firstName.' '.$fakerDe->lastName);
     		$manager->persist($author);
 			$this->addReference('author_'.$i, $author);
 		}
