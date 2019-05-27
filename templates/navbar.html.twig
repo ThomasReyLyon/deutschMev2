@@ -3,18 +3,18 @@
         <div class="uk-navbar-left">
 
             <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="#">DeutschMe.fr</a></li>
+                <li class="uk-active"><a href="{{ path("homepage") }}">DeutschMe.fr</a></li>
                 <li>
                     <a href="#">Articles par catégories</a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li class="uk-active"><a href="#">Article français sur l'Alleamgne</a></li>
-                            <li><a href="#">deutsche Artikeln über Frankreich</a></li>
-                            <li><a href="#">Others</a></li>
+                            <li class="uk-active"><a href="{{ path("category_index", {"name" : 'article_fr'}) }}">Article français sur l'Alleamgne</a></li>
+                            <li><a href="{{ path("category_index", {"name" : 'article_de'}) }}">deutsche Artikeln über Frankreich</a></li>
+                            <li><a href="{{ path("category_index", {"name" : 'article_other'}) }}">Others</a></li>
                         </ul>
                     </div>
                 </li>
-                <li><a href="#">Gestion des articles</a></li>
+                <li><a href="{{ path("article_index") }}">Gestion des articles</a></li>
             </ul>
 
         </div>
