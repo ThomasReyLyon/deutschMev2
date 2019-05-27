@@ -6,9 +6,10 @@
             {% for article in articles | slice(0,1) %}
             <article class="uk-article">
 
-                <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ article.title }}</a></h1>
+                <h1 class="uk-article-title"><a class="uk-link-reset" href="{{ path("article_show", {"id" : article.id}) }}">{{ article.title }}</a></h1>
 
-                <p class="uk-article-meta">écrit par <a href="#">{{ article.author.name }}</a> on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#">{{ article.category.name }}</a></p>
+                <p class="uk-article-meta">écrit par <a href="#">{{ article.author.name }}</a>
+                    on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="{{ path("category_index", {"name" : article.category.name}) }}">{{ article.category.name }}</a></p>
 
                 <p  class="homepage-Article ">
                 {{ article.content | truncate(600)}}
@@ -16,7 +17,7 @@
 
                 <div class="uk-grid-small uk-child-width-auto" uk-grid>
                     <div>
-                        <a class="uk-button uk-button-text" href="#">Read more</a>
+                        <a class="uk-button uk-button-text" href="{{ path("article_show", {"id" : article.id}) }}">Read more</a>
                     </div>
                     <div>
                         <a class="uk-button uk-button-text" href="#">5 Comments</a>
@@ -32,9 +33,10 @@
 
                 <article class="uk-article">
 
-                    <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ article.title }}</a></h1>
+                    <h1 class="uk-article-title"><a class="uk-link-reset" href="{{ path("article_show", {"id" : article.id}) }}">{{ article.title }}</a></h1>
 
-                    <p class="uk-article-meta">Written by <a href="#">{{ article.author.name }}</a> on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#">{{ article.category.name }}</a></p>
+                    <p class="uk-article-meta">Written by <a href="#">{{ article.author.name }}</a>
+                        on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#">{{ article.category.name }}</a></p>
 
                     <p class="homepage-Article">
                         {{ article.content | truncate(400) }}
@@ -42,7 +44,7 @@
 
                     <div class="uk-grid-small uk-child-width-auto" uk-grid>
                         <div>
-                            <a class="uk-button uk-button-text" href="#">Read more</a>
+                            <a class="uk-button uk-button-text" href="{{ path("article_show", {"id" : article.id}) }}">Read more</a>
                         </div>
                         <div>
                             <a class="uk-button uk-button-text" href="#">5 Comments</a>

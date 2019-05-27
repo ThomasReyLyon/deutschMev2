@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="uk-child-width-1 uk-text-center main-div-homepage uk-margin-small uk-padding-medium" uk-grid>
+        <div>
+
+                <article class="uk-article">
+
+                    <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ article.title }}</a></h1>
+
+                    <p class="uk-article-meta">écrit par <a href="#">{{ article.author.name }}</a>
+                        on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#">{{ article.category.name }}</a></p>
+
+                    <p  class="homepage-Article ">
+                        {{ article.content }}
+                    </p>
+
+                    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+
+                        <div>
+                            <a class="uk-button uk-button-text" href="#">5 Comments</a>
+                        </div>
+                    </div>
+
+                </article>
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

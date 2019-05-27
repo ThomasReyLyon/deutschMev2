@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="uk-child-width-1-3 uk-text-center"  uk-grid>
+        {% for article in articles %}
+            <article class="uk-article">
+
+                <h1 class="uk-article-title"><a class="uk-link-reset" href="{{ path("article_show", {"id" : article.id}) }}">{{ article.title }}</a></h1>
+
+                <p class="uk-article-meta">Written by <a href="#">{{ article.author.name }}</a>
+                    on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#"></a></p>
+
+                <p class="homepage-Article">
+                    {{ article.content | truncate(200) }}
+                </p>
+
+                <div class="uk-grid-small uk-child-width-auto" uk-grid>
+                    <div>
+                        <a class="uk-button uk-button-text" href="{{ path("article_show", {"id" : article.id}) }}">Read more</a>
+                    </div>
+                    <div>
+                        <a class="uk-button uk-button-text" href="#">5 Comments</a>
+                    </div>
+                </div>
+
+            </article>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
