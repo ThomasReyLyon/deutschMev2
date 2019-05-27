@@ -73,31 +73,30 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-        	//$article = $form->getData();
-
-			$category = $categoryRepository->findOneById($request->request->get('article')['category']);
-			$newAuthor = new Author();
-
-			$newAuthor->setName($request->request->get('nameAuthor'));
-
         	if($request->request->get('nameAuthor') != null) {
-			$article->setTitle($request->request->get('article')['title']);
-			$article->setContent($request->request->get('article')['content']);
-			$article->setDateArticle(new \DateTime());
-			$article->setCategory($category);
-			$article->setAuthor($newAuthor);
 
-			$manager->persist($article);
-			$manager->flush();
+				$category = $categoryRepository->findOneById($request->request->get('article')['category']);
+
+				$newAuthor = new Author();
+				$newAuthor->setName($request->request->get('nameAuthor'));
+
+				$article->setTitle($request->request->get('article')['title']);
+				$article->setContent($request->request->get('article')['content']);
+				$article->setDateArticle(new \DateTime());
+				$article->setCategory($category);
+				$article->setAuthor($newAuthor);
+
+				$manager->persist($article);
+				$manager->flush();
 
 			}
         	else{
 				$this->getDoctrine()->getManager()->flush();
 			}
 
-            return $this->redirectToRoute('article_index', [
-                'id' => $article->getId(),
-            ]);
+		return $this->redirectToRoute('article_index', [
+			'id' => $article->getId(),
+		]);
         }
 
         return $this->render('article/edit.html.twig', [
