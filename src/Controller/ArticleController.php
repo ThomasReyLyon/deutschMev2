@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Author;
+use App\Entity\Category;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,13 +65,35 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}/edit", name="article_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Article $article): Response
+    public function edit(Request $request, Article $article, CategoryRepository $categoryRepository, ObjectManager $manager): Response
     {
+
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+
+        	//$article = $form->getData();
+
+			$category = $categoryRepository->findOneById($request->request->get('article')['category']);
+			$newAuthor = new Author();
+
+			$newAuthor->setName($request->request->get('nameAuthor'));
+
+        	if($request->request->get('nameAuthor') != null) {
+			$article->setTitle($request->request->get('article')['title']);
+			$article->setContent($request->request->get('article')['content']);
+			$article->setDateArticle(new \DateTime());
+			$article->setCategory($category);
+			$article->setAuthor($newAuthor);
+
+			$manager->persist($article);
+			$manager->flush();
+
+			}
+        	else{
+				$this->getDoctrine()->getManager()->flush();
+			}
 
             return $this->redirectToRoute('article_index', [
                 'id' => $article->getId(),
