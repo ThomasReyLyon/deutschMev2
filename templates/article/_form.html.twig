@@ -1,4 +1,28 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+<p>
+    {{ form_row(form.title, {'label' : 'Titre: '}) }}
+</p>
+
+<p>
+    {{ form_row(form.content, {'label' : 'Texte: ', 'attr' : {'cols': '100', 'rows' : '20'}}) }}
+</p>
+
+<p>
+    {{ form_row(form.dateArticle, {'label' : 'date : '}) }}
+</p>
+
+<p>
+    {{ form_row(form.category, {'label' : 'Categorie : '}) }}
+</p>
+
+<p>
+    {{ form_row(form.author, {'label' : 'Auteur. Si pas dans la liste, veuillez sélectionner "autre" :' }) }}
+</p>
+<div id="auteurX" style="display: none">
+    <label for="xxx">Nouvel auteur: </label>
+    <input id="xxx" type="text" name="nameAuthor">
+
+</div>
+
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

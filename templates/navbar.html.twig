@@ -8,9 +8,9 @@
                     <a href="#">Articles par catégories</a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li class="uk-active"><a href="{{ path("category_index", {"name" : 'article_fr'}) }}">Article français sur l'Alleamgne</a></li>
-                            <li><a href="{{ path("category_index", {"name" : 'article_de'}) }}">deutsche Artikeln über Frankreich</a></li>
-                            <li><a href="{{ path("category_index", {"name" : 'article_other'}) }}">Others</a></li>
+                            <li class="uk-active"><a href="{{ path("category_index", {"name" : 'article_fr', "page" :"1"}) }}">Article français sur l'Alleamgne</a></li>
+                            <li><a href="{{ path("category_index", {"name" : 'article_de', "page" :"1"}) }}">deutsche Artikeln über Frankreich</a></li>
+                            <li><a href="{{ path("category_index", {"name" : 'article_other', "page" :"1"}) }}">Others</a></li>
                         </ul>
                     </div>
                 </li>

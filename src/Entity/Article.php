@@ -39,10 +39,11 @@ class Article
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="articles" ,cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
 
     public function getId(): ?int
     {
@@ -108,5 +109,6 @@ class Article
 
         return $this;
     }
+
 
 }
