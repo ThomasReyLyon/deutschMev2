@@ -2,8 +2,29 @@
 
 {% block body %}
 
+    <ul class="uk-pagination uk-flex-center" uk-margin>
+        {% if currentPage == 1 %}
+    <li class="not-displayed"><a href="{{ path("category_index", {"name" : 'article_fr', "page" : currentPage-1}) }}"><span uk-pagination-previous></span></a></li>
+        {% else %}
+        <li><a href="{{ path("category_index", {"name" : 'article_fr', "page" : currentPage-1}) }}"><span uk-pagination-previous></span></a></li>
+        {% endif %}
+    {% for numPage in countArticles %}
+        {% if numPage == currentPage %}
+        <li class="uk-active"><a href="{{ path("category_index", {"name" : 'article_fr', "page" : numPage}) }}">{{ numPage }}</a></li>
+        {% else %}
+        <li><a href="{{ path("category_index", {"name" : 'article_fr', "page" : numPage}) }}">{{ numPage }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+    {% if currentPage == countArticles | length %}
+    <li class="not-displayed"><a href="{{ path("category_index", {"name" : 'article_fr', "page" : currentPage+1}) }}"><span uk-pagination-next></span></a></li>
+        {% else %}
+            <li><a href="{{ path("category_index", {"name" : 'article_fr', "page" : currentPage+1}) }}"><span uk-pagination-next></span></a></li>
+
+    {% endif %}
+    </ul>
     <div class="uk-child-width-1-3 uk-text-center"  uk-grid>
-        {% for article in articles %}
+        {% for article in articles | slice(pageFloorSlice,6 )%}
             <article class="uk-article">
 
                 <h1 class="uk-article-title"><a class="uk-link-reset" href="{{ path("article_show", {"id" : article.id}) }}">{{ article.title }}</a></h1>
