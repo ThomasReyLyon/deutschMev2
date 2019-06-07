@@ -18,7 +18,6 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('dateArticle')
             ->add('category', EntityType::class, [
             	'class' => Category::class,
 				"choice_label" => function(Category $category){

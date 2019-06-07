@@ -20,18 +20,6 @@ import Icons from 'uikit/dist/js/uikit-icons';
 UIkit.use(Icons);
 
 // components can be called from the imported UIkit reference
-UIkit.notification('DeutschMe[.fr]');
-
-let auteurX = document.getElementById('auteurX');
-
-let author = document.getElementById("article_author");
+//UIkit.notification('DeutschMe[.fr]');
 
 
-author.addEventListener('input', function () {
-    if(author.value === '541') {
-        auteurX.style.display = "block";
-    }
-    else {
-        auteurX.style.display = "none";
-    }
-});

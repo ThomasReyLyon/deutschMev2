@@ -23,7 +23,7 @@
                 <td>{{ article.content }}</td>
                 <td>{{ article.dateArticle ? article.dateArticle|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('article_show', {'slug': article.slug}) }}">show</a>
                     <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
                 </td>
             </tr>

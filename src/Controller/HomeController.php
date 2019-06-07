@@ -19,8 +19,12 @@ class HomeController extends AbstractController
 
 		$articles = $articleRepository->allArticlesOrderedByDate();
 
+		$notLogged = 1;
+		if(!empty($this->getUser())){
+			$notLogged = 0;
+		}
 
-		return $this->render('home.html.twig', ['articles' => $articles]);
+		return $this->render('home.html.twig', ['articles' => $articles, 'notLogged' => $notLogged]);
 	}
 
 }
