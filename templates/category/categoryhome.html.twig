@@ -27,7 +27,7 @@
         {% for article in articles | slice(pageFloorSlice,6 )%}
             <article class="uk-article">
 
-                <h1 class="uk-article-title"><a class="uk-link-reset" href="{{ path("article_show", {"id" : article.id}) }}">{{ article.title }}</a></h1>
+                <h1 class="uk-article-title"><a class="uk-link-reset" href="{{ path("article_show", {"slug" : article.slug}) }}">{{ article.title }}</a></h1>
 
                 <p class="uk-article-meta">Written by <a href="#">{{ article.author.name }}</a>
                     on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#"></a></p>
@@ -38,7 +38,7 @@
 
                 <div class="uk-grid-small uk-child-width-auto" uk-grid>
                     <div>
-                        <a class="uk-button uk-button-text" href="{{ path("article_show", {"id" : article.id}) }}">Read more</a>
+                        <a class="uk-button uk-button-text" href="{{ path("article_show", {"slug" : article.slug}) }}">Read more</a>
                     </div>
                     <div>
                         <a class="uk-button uk-button-text" href="#">5 Comments</a>

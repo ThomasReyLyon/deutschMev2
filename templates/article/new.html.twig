@@ -3,7 +3,12 @@
 {% block title %}New Article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
+    {% if edit_mode %}
+        <h1>Modifier Article</h1>
+    {% else %}
+        <h1>Créer Article</h1>
+    {% endif %}
+
 
     {{ include('article/_form.html.twig') }}
 
