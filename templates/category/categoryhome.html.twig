@@ -4,22 +4,22 @@
 
     <ul class="uk-pagination uk-flex-center" uk-margin>
         {% if currentPage == 1 %}
-    <li class="not-displayed"><a href="{{ path("category_index", {"name" : 'article_fr', "page" : currentPage-1}) }}"><span uk-pagination-previous></span></a></li>
+    <li class="not-displayed"><a href="{{ path("category_index", {"name" : CategoryName, "page" : currentPage-1}) }}"><span uk-pagination-previous></span></a></li>
         {% else %}
-        <li><a href="{{ path("category_index", {"name" : 'article_fr', "page" : currentPage-1}) }}"><span uk-pagination-previous></span></a></li>
+        <li><a href="{{ path("category_index", {"name" : CategoryName, "page" : currentPage-1}) }}"><span uk-pagination-previous></span></a></li>
         {% endif %}
     {% for numPage in countArticles %}
         {% if numPage == currentPage %}
-        <li class="uk-active"><a href="{{ path("category_index", {"name" : 'article_fr', "page" : numPage}) }}">{{ numPage }}</a></li>
+        <li class="uk-active"><a href="{{ path("category_index", {"name" : CategoryName, "page" : numPage}) }}">{{ numPage }}</a></li>
         {% else %}
-        <li><a href="{{ path("category_index", {"name" : 'article_fr', "page" : numPage}) }}">{{ numPage }}</a></li>
+        <li><a href="{{ path("category_index", {"name" : CategoryName, "page" : numPage}) }}">{{ numPage }}</a></li>
         {% endif %}
     {% endfor %}
 
     {% if currentPage == countArticles | length %}
-    <li class="not-displayed"><a href="{{ path("category_index", {"name" : 'article_fr', "page" : currentPage+1}) }}"><span uk-pagination-next></span></a></li>
+    <li class="not-displayed"><a href="{{ path("category_index", {"name" : CategoryName, "page" : currentPage+1}) }}"><span uk-pagination-next></span></a></li>
         {% else %}
-            <li><a href="{{ path("category_index", {"name" : 'article_fr', "page" : currentPage+1}) }}"><span uk-pagination-next></span></a></li>
+            <li><a href="{{ path("category_index", {"name" : CategoryName, "page" : currentPage+1}) }}"><span uk-pagination-next></span></a></li>
 
     {% endif %}
     </ul>
@@ -41,7 +41,7 @@
                         <a class="uk-button uk-button-text" href="{{ path("article_show", {"slug" : article.slug}) }}">Read more</a>
                     </div>
                     <div>
-                        <a class="uk-button uk-button-text" href="#">5 Comments</a>
+                        <a class="uk-button uk-button-text" href="{{ path("article_show", {"slug" : article.slug}) }}">{{ article.comments | length }} Comments</a>
                     </div>
                 </div>
 

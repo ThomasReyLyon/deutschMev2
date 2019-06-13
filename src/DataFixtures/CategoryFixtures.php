@@ -9,7 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class CategoryFixtures extends Fixture
 {
 
-	private const CATEGORIES = ['article_fr', 'article_de', 'article_other++'];
+	private const CATEGORIES = ['article_fr', 'article_de', 'article_other'];
 
 
 	public function load(ObjectManager $manager)
