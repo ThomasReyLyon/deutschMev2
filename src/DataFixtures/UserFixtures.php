@@ -25,7 +25,7 @@ class UserFixtures extends Fixture
 
 	public function load(ObjectManager $manager)
     {
-		$faker = Faker\Factory::create('fr_FR');
+
 
 
     	$user = new User();
@@ -37,7 +37,7 @@ class UserFixtures extends Fixture
     	$manager->persist($user);
 
     	for ($i = 0; $i < 10; $i++) {
-
+			$faker = Faker\Factory::create('fr_FR');
 			$user = new User();
 			$firstName = $faker->firstName;
 			$lastName = $faker->lastName;
@@ -45,7 +45,7 @@ class UserFixtures extends Fixture
 			$name = $firstName.$lastName;
 			$cleanName = $this->slugifier->removeAccentsForEmail($name);
 			$user->setEmail($cleanName.'@user.fr');
-			$user->setPassword($this->encoder->encodePassword($user,'user'));
+			$user->setPassword($this->encoder->encodePassword($user,'author'));
 			$user->setRoles(['ROLE_AUTHOR']);
 			$user->setName($firstName.' '.$lastName);
 			$manager->persist($user);
@@ -58,11 +58,24 @@ class UserFixtures extends Fixture
 			$lastName = $fakerDe->lastName;
 			$user = new User();
 			$user->setEmail($firstName.$lastName.'@user.fr');
-			$user->setPassword($this->encoder->encodePassword($user,'user'));
+			$user->setPassword($this->encoder->encodePassword($user,'author'));
 			$user->setName($firstName.' '.$lastName);
 			$user->setRoles(['ROLE_AUTHOR']);
 			$manager->persist($user);
 			$this->addReference('author_'.$i, $user);
+		}
+
+    	for($i = 20; $i < 40; $i++) {
+			$fakerDe = Faker\Factory::create('en_GB');
+			$firstName = $fakerDe->firstName;
+			$lastName = $fakerDe->lastName;
+			$user = new User();
+			$user->setEmail($firstName.$lastName.'@user.fr');
+			$user->setPassword($this->encoder->encodePassword($user,'user'));
+			$user->setName($firstName.' '.$lastName);
+			$user->setRoles(['ROLE_user']);
+			$manager->persist($user);
+			$this->addReference('user_'.$i, $user);
 		}
 
 

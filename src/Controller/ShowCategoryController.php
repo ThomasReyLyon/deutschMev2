@@ -21,8 +21,11 @@ class ShowCategoryController extends AbstractController
 	 * @ParamConverter("name", options={"mapping": {"name" : "name"}})
 	 */
 	public function categoryIndex(Category $category, Request $request) {
-
+		//get the articles of the selected category
 		$articles = $category->getArticles();
+		//get the current category (used for the pagination system)
+
+		$categoryName = $category->getName();
 
 		//Defines the limit of slice filter in TWIG display (6 articles / page)
 		if($request->get('page') == 1) {
@@ -47,7 +50,8 @@ class ShowCategoryController extends AbstractController
 			'articles' => $articles,
 			'pageFloorSlice' => $pageFloorSlice,
 			'countArticles' => $countArticles,
-			'currentPage' => $currentPage
+			'currentPage' => $currentPage,
+			'CategoryName' => $categoryName
 		]);
 
 	}

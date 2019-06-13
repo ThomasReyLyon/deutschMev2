@@ -44,10 +44,11 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 			$article->setAuthor($this->getReference('author_'.rand(0,9)));
 			$article->setSlug($slugify->generate($fakeTitle));
     		$manager->persist($article);
+    		$this->addReference('article_'.$i, $article);
 
 		}
 
-		for($i = 0; $i < 50; $i++) {
+		for($i = 50; $i < 100; $i++) {
 			$article = new Article();
 			$fakeTitle = $fakerFr->sentence($randomNumberOfWordsTitle);
 			$article->setTitle($fakeTitle);
@@ -57,10 +58,10 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 			$article->setAuthor($this->getReference('author_'.rand(10,19)));
 			$article->setSlug($slugify->generate($fakeTitle));
 			$manager->persist($article);
-
+			$this->addReference('article_'.$i, $article);
 		}
 
-		for($i = 0; $i < 10; $i++) {
+		for($i = 100; $i < 110; $i++) {
 			$article = new Article();
 			$fakeTitle = $fakerFr->sentence($randomNumberOfWordsTitle);
 			$article->setTitle($fakeTitle);
@@ -70,6 +71,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 			$article->setAuthor($this->getReference('author_'.rand(1,19)));
 			$article->setSlug($slugify->generate($fakeTitle));
 			$manager->persist($article);
+			$this->addReference('article_'.$i, $article);
 		}
 
 

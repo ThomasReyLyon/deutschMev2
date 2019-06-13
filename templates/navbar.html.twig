@@ -26,11 +26,11 @@
                     {% endif %}
             </ul>
 
-            {%  if is_granted('ROLE_AUTHOR') or is_granted('ROLE_ADMIN') %}
+            {%  if is_granted('ROLE_USER') %}
                 <a href="{{ path("app_logout") }}">logout</a>
             <small class="">Vous êtes connecté  </small>
             {% endif %}
-            {% if not is_granted('ROLE_AUTHOR') and not is_granted('ROLE_ADMIN') %}
+            {% if not is_granted('ROLE_USER') %}
         </ul>
                 <a href="{{ path("app_login") }}">login</a>
             {% endif %}

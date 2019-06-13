@@ -24,6 +24,13 @@ class HomeController extends AbstractController
 			$notLogged = 0;
 		}
 
+
+		foreach ($articles as $article) {
+
+		}
+
+
+
 		return $this->render('home.html.twig', ['articles' => $articles, 'notLogged' => $notLogged]);
 	}
 

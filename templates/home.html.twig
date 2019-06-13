@@ -20,7 +20,7 @@
                         <a class="uk-button uk-button-text" href="{{ path("article_show", {"slug" : article.slug}) }}">Read more</a>
                     </div>
                     <div>
-                        <a class="uk-button uk-button-text" href="#">5 Comments</a>
+                        <a class="uk-button uk-button-text" href="#">{{ article.comments | length }} Comments</a>
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
                             <a class="uk-button uk-button-text" href="{{ path("article_show", {"slug" : article.slug}) }}">Read more</a>
                         </div>
                         <div>
-                            <a class="uk-button uk-button-text" href="#">5 Comments</a>
+                            <a class="uk-button uk-button-text" href="{{ path("article_show", {"slug" : article.slug}) }}">{{ article.comments | length }} Comments</a>
                         </div>
                     </div>
 

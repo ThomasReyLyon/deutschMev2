@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,10 +20,11 @@ class UserArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository)
     {
 
+			return $this->render('article/index.html.twig', [
+				'articles' => $articleRepository->findByAuthor($this->getUser()),
+			'errors' => ""
 
 
-		return $this->render('article/index.html.twig', [
-			'articles' => $articleRepository->findByAuthor($this->getUser()),
 		]);
     }
 }

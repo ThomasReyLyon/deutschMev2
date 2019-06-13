@@ -4,29 +4,66 @@
     <div class="uk-child-width-1 uk-text-center main-div-homepage uk-margin-small uk-padding-medium" uk-grid>
         <div>
 
-                <article class="uk-article">
+            <article class="uk-article">
 
-                    <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ article.title }}</a></h1>
+                <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{ article.title }}</a></h1>
 
-                    <p class="uk-article-meta">écrit par <a href="#">{{ article.author.name }}</a>
-                        on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#">{{ article.category.name }}</a></p>
+                <p class="uk-article-meta">écrit par <a href="#">{{ article.author.name }}</a>
+                    on {{ article.dateArticle |date('d.m.Y') }}. Posted in <a href="#">{{ article.category.name }}</a></p>
 
-                    <p  class="homepage-Article ">
-                        {{ article.content }}
-                    </p>
+                <p  class="homepage-Article ">
+                    {{ article.content }}
+                </p>
 
-                    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+                <div class="uk-grid-small uk-child-width-auto" uk-grid>
 
-                        <div>
-                            <a class="uk-button uk-button-text" href="#">5 Comments</a>
-                        </div>
+                    <div>
+                        <a class="uk-button uk-button-text" href="#">{{ countComments }} comment(s)</a>
                     </div>
-
-                </article>
+                </div>
+            </article>
 
         </div>
 
 
     </div>
+
+    <!-- COMMENTS -->
+
+
+    {% if is_granted('ROLE_USER') %}
+    {{ form_start(form) }}
+    <div class="uk-margin">
+
+        <div class="uk-form-controls">
+            {{ form_widget(form.content, {'attr' : {'cols':150, 'rows' : 10, 'placeholder' :'votre commentaire' } }) }}
+        </div>
+    </div>
+    <button type="submit" class="uk-button-default">Add Comment</button>
+    {{ form_end(form) }}
+    {% else %}
+    You need to be logged in before commenting! Go there <a href="{{ path('app_login') }}">Login</a>
+    {% endif %}
+
+    <ul class="uk-comment-list">
+        {% for comment in comments %}
+            <li>
+                <article class="uk-comment uk-comment-primary uk-visible-toggle" tabindex="-1">
+                    <header class="uk-comment-header uk-position-relative">
+                        <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                            <div class="uk-width-expand">
+                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{ comment.commentator.name }}</a></h4>
+                                <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">{{ comment.dateComment |date ('d-m-Y') }}</a></p>
+                            </div>
+                        </div>
+                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                    </header>
+                    <div class="uk-comment-body">
+                        <p>{{ comment.content }}</p>
+                    </div>
+                </article>
+            </li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

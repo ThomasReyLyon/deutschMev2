@@ -3,6 +3,10 @@
 {% block title %}New Article{% endblock %}
 
 {% block body %}
+    {% for error in errors %}
+        {{ error }}
+    {% endfor %}
+
     {% if edit_mode %}
         <h1>Modifier Article</h1>
     {% else %}
@@ -12,5 +16,6 @@
 
     {{ include('article/_form.html.twig') }}
 
+    {{ include('article/_delete_form.html.twig') }}
     <a href="{{ path('article_index') }}">back to list</a>
 {% endblock %}
